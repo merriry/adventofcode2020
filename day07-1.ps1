@@ -20,12 +20,12 @@ $baglist = @("shiny gold")
 do {
     $containerrules = @($rules | Where-object { $_.Contained -in $baglist } ) 
     if ($containerrules.Count -gt 0) {
-        $baglist = @($containerrules.Container | select -Unique )
+        $baglist = @($containerrules.Container | Select-Object -Unique )
     }
     else {
         $baglist = @()
     }
-    $baglist | foreach {
+    $baglist | ForEach-Object {
         if ($_ -notin $bagcompiled) {
             $bagcompiled.Add($_) |out-null
         }

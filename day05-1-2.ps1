@@ -10,10 +10,10 @@ function partitionfunc ($part, $low, $high) {
         }
 }
 
-Get-Content .\day05input | foreach {
+Get-Content .\day05input | ForEach-Object {
 $seatarray +=, ((partitionfunc $_.substring(0,7) 0 127) * 8 + (partitionfunc $_.substring(7,3) 0 7))
 }
-$seatarray | foreach {
+$seatarray | ForEach-Object {
 if (($_ + 1 -notin $seatarray) -and ($_ + 2 -in $seatarray)) { write-host ($_+1);return}     
 }
 ($seatarray | Measure-Object -Maximum).maximum

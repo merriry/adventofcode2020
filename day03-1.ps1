@@ -2,7 +2,7 @@
 Remove-Variable *
 $count = 0
 $hloc = 0
-Get-Content .\day03input | % {
+Get-Content .\day03input | ForEach-Object {
     if($_[$hloc] -eq "#") {
     $count +=1
     }

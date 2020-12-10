@@ -1,6 +1,6 @@
 ﻿$ErrorActionPreference = "silentlycontinue"
 Remove-Variable *
-$adapters = [system.collections.arraylist](Get-Content .\day10input | %{[double]$_})
+$adapters = [system.collections.arraylist](Get-Content .\day10input | ForEach-Object{[double]$_})
 $currjolt = 0
 $onejolt = 0
 $threejolt = 0

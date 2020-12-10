@@ -5,9 +5,9 @@ $hloc = @(0,0,0,0,0)
 $vloc = @(0,0,0,0,0)
 $hmov = @(1,3,5,7,1)
 $vmov = @(1,1,1,1,2)
-Get-Content .\day03input | % {
+Get-Content .\day03input | ForEach-Object {
     $line = $_
-    0..4 | % {
+    0..4 | ForEach-Object {
         if ($vloc[$_] % $vmov[$_] -eq 0) {
             if($line[$hloc[$_]] -eq "#") {
                 $count[$_] += 1
@@ -18,7 +18,7 @@ Get-Content .\day03input | % {
     }
 }
 $target = 1
-$count | % {
+$count | ForEach-Object {
     $target *= $_
     }
 $target

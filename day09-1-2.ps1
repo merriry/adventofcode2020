@@ -1,12 +1,12 @@
 ﻿$ErrorActionPreference = "silentlycontinue"
 Remove-Variable *
 
-$fullcode = (Get-Content .\day09input | %{[int64]$_})
+$fullcode = (Get-Content .\day09input | ForEach-Object{[int64]$_})
 $preamble = $fullcode[0..24]
 $code = $fullcode[25..$($fullcode.length)]
 do {
     $found=$false
-    $preamble | foreach {
+    $preamble | ForEach-Object {
     if(($code[0] - $_) -in ($preamble -ne $_)) {
         $found = $true
             $preamble = $preamble[1..24] + $code[0]
@@ -22,9 +22,9 @@ do {
     $target
 $search = @()
 $results = 0
-$fullcode | foreach {
+$fullcode | ForEach-Object {
     $adder = $_
-    $search = @($search | %{$_ + $adder})
+    $search = @($search | ForEach-Object{$_ + $adder})
     $search += ,$adder
     if ($target -in $search) {
     $results = ($fullcode[$fullcode.IndexOf([int64]$adder)..$search.IndexOf([int64]$target)] | Measure-Object -Maximum -Minimum)

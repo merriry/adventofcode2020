@@ -8,7 +8,7 @@ $target = $code.count
 
 function runtoend ($runline, $acc) {
 $lines = @()
-while (!($lines + $runline | group | where {$_.count -gt 1}) -and $runline -ne $target) {
+while (!($lines + $runline | Group-Object | Where-Object {$_.count -gt 1}) -and $runline -ne $target) {
 $lines += $runline
 $code[$runline] -match '(.+) ([+|-]\d+)' |out-null
  switch ($Matches[1]) {

@@ -20,13 +20,13 @@ $start = @("shiny gold")
 $currentlayer = [System.Collections.ArrayList]@($rules | Where-object { $_.Container -in $start } )
 $nextlayer = New-Object -TypeName "system.collections.arraylist"
 while ($currentlayer.Count -gt 0) {
-$currentlayer | foreach {
+$currentlayer | ForEach-Object {
     $currbag = $_.contained
     $numbags = $_.numcontained
     if ($numbags -ne 0) {$nextrule = $rules | Where-object { $_.Container -in $currbag }
-        1..$numbags | foreach {
+        1..$numbags | ForEach-Object {
             $bagcompiled.add($currbag) | Out-Null
-            $nextrule | foreach {
+            $nextrule | ForEach-Object {
             if ($_.numcontained -gt 0) {$nextlayer.add($_)|out-null }
             }
             }
