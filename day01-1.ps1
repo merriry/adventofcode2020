@@ -3,8 +3,8 @@ Remove-Variable *
 $target = 0
 $lead = 0
 Get-Content .\day01input |
-% {
-[array]$number += [int]::parse($_)
+ForEach-Object {
+$number += @([int]::parse($_))
 }
 $number = $number | Sort-Object
 $end = $number.Count
